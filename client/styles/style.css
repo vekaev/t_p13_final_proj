@@ -6,12 +6,21 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   background-color: #1b5e20;
 }
 
@@ -27,10 +36,14 @@ p {
 }
 
 .links {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   max-width: 300px;
   width: 100%;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .links a {
@@ -44,7 +57,24 @@ form {
 form input {
   border: 0;
   height: 20px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+form input::-webkit-input-placeholder {
+  color: green;
+}
+
+form input:-ms-input-placeholder {
+  color: green;
+}
+
+form input::-ms-input-placeholder {
+  color: green;
+}
+
+form input::placeholder {
+  color: green;
 }
 
 form button {
@@ -53,10 +83,7 @@ form button {
   height: 20px;
 }
 
-::placeholder { 
-  color: green;
-}
-
 .back {
   margin-bottom: 10px;
 }
+/*# sourceMappingURL=style.css.map */
