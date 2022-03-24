@@ -43,7 +43,8 @@ form {
     border: 0;
     height: 20px;
     box-sizing: border-box;
-
+    color: green;
+    
     &::placeholder { 
       color: green;
     }
