@@ -59,6 +59,7 @@ form input {
   height: 20px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  color: green;
 }
 
 form input::-webkit-input-placeholder {
