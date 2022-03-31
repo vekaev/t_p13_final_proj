@@ -1,0 +1,3 @@
+{'name': 'Test user', 'email': 'test@test.com', 'phone': '0456478976'}
+{'name': 'Test user 2', 'email': 'test@test.com', 'phone': '0456478976'}
+{'name': 'b', 'email': 'a', 'phone': None}
