@@ -104,4 +104,18 @@ form button {
 .back {
   margin-bottom: 10px;
 }
+
+.hidden {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 0;
+  opacity: 0;
+}
+
+.hidden:hover {
+  opacity: 0.1;
+}
 /*# sourceMappingURL=style.css.map */

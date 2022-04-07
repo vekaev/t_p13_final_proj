@@ -11,13 +11,72 @@
 <body>
   <a href="../index.html" class="back">Back</a>
   <a href="tel:+380636127659">+380 63 61 27 659</a>
-  <form>
-    <input type="text" placeholder="Name: ">
-    <input type="text" placeholder="Phone: ">
-    <input type="email" placeholder="Email: " required>
+  <form onsubmit="handleSubmit(); return false">
+    <input id="form_name" type="text" placeholder="Name: " required>
+    <input id="form_phone" type="text" placeholder="Phone: " required>
+    <input id="form_email" type="email" placeholder="Email: " required>
     <button type="submit">Send</button>
   </form>
+  <button class="hidden" onclick="handleClick(); return false"></button>
 
-  <script></script>
+  <script>
+    const BASE_URL = 'http://127.0.0.1:8000';
+    const DEFAULT_PASSWORD = 'p13';
+    const form_name = document.getElementById("form_name");
+    const form_phone = document.getElementById("form_phone");
+    const form_email = document.getElementById("form_email");
+    
+    
+    function handleSubmit() {
+      if (window.localStorage.getItem("form_sended")) {
+        alert('Your request was sended');
+        return
+      };
+
+      const paramsString = new URLSearchParams({
+        name: form_name.value,
+        phone: form_phone.value,
+        email: form_email.value
+      });
+      const url = `${BASE_URL}/client_form?${paramsString}`;
+      fetch(url)
+        .then(function(response) {
+          return response.json()
+        })
+        .then(function(data) {
+          if (!data?.detail) {
+            window.localStorage.setItem('form_sended', new Date());
+            alert('Your request succeeded');
+          } else {
+            alert('Your request failed.\nError message: ' + data.detail)
+          }
+        })
+        .catch(function(error) {
+          alert('Your request failed.\nError message: ' + error.message)
+        });
+    }
+
+    function handleClick() {
+      const password = prompt('Enter password')
+
+      if (password.toLowerCase() === DEFAULT_PASSWORD) {
+        const url = `${BASE_URL}/all_client_form`;
+        fetch(url)
+          .then(function(response) {
+            return response.json()
+          })
+          .then(function(data) {
+            if (!data?.detail) {
+              alert(JSON.stringify(data, null, 2));
+            } else {
+              alert('Your request failed.\nError message: ' + data.detail)
+            }
+          })
+          .catch(function(error) {
+            alert('Your request failed.\nError message: ' + error.message)
+          });
+      }
+    }
+  </script>
 </body>
 </html>
