@@ -1,9 +1,22 @@
 from fastapi import FastAPI, HTTPException
 from starlette.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 from os.path import join, dirname, exists
 import sqlite3
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["*"]
+)
+
 
 FILE_PATH = join(dirname(__file__), 'client_forms.txt')
 
@@ -23,8 +36,8 @@ CREATE TABLE IF NOT EXISTS [clients](
 );
 ''')
 
-def save_user(*user):
-    cursor.execute(f'INSERT INTO [clients] (name, email, phone) VALUES(?,?,?)', user)
+def save_user(user):
+    cursor.execute(f'INSERT INTO [clients] (name, email, phone) VALUES(?,?,?)', (user['name'], user['email'], user['phone']))
     connection.commit()
     # with open(FILE_PATH, 'a') as f:
     #     f.write(str(user) + '\n')
